@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/* 前ページ共通のスタイルを定義 */
+
+/* 基本的な配色 */
+.green-text {
+	color: #728143;
+}
+.black-text {
+	color: #030507;
+}
+.white-text {
+	color: #fbfff7;
+}
+.green-bg {
+	background-color: #728143;
+}
+.black-bg {
+	background-color: #030507;
+}
+.white-bg {
+	background-color: #fbfff7;
+}
+
+body {
+    font-family: Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif;
+    min-width: 375px;
+    background-color: #fbfff7;
+    color: #728143;
+}
+header{
+	padding-bottom: 25px;
+}
+#logo {
+    margin-bottom: 25px;
+    padding-top: 21px;
+    padding-left: 20px;
+    text-align: left;
+}
+h2 {
+	font-size: 24px;
+	padding-bottom: 12px;
+}
+header ul {
+	padding-left: 30px;
+	display: flex;
+	align-items: center;
+}
+.user-info {
+	font-size: 18px;
+	height: 30px;
+	display: inline-block;
+	padding-right: 8px;
+}
+
+
+.logout-button{
+	background-color: #728143;
+	color: #fbfff7;
+	width: 104px;
+	padding: 6px 12px;
+	border-radius: 12px;
+	cursor: pointer;
+}
+footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+#copyright {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: solid 1px#728143;
+}
+
+thead {
+  background-color: #728143;
+  color: #fbfff7;
+}
+
+th, td {
+
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #e2e8cf;
+}
+#postTextarea {
+	width: 300px;
+	height: 100px;
+	resize: none;
+}

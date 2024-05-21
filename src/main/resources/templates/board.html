@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja"
+	xmlns:sec="http://www.thymleaf.org/thymleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>けいじばん</title>
+
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link rel="stylesheet" th:href="@{/css/modal-window.css}">
+</head>
+
+<body>
+
+<div id="app">
+	<header>
+		<h1 id="logo">
+			<a>
+				<img th:src="@{/images/logo-general.png}" height="70">
+			</a>
+		</h1>
+		<ul>
+			<li>
+				<h2>現在のログインユーザ</h2>
+				<div id="login-userid" class="user-info"   th:text="'UserID：'+${loginUser.userid}"></div>
+				<div id="login-username" class="user-info" th:text="'UserName：'+${loginUser.username}"></div>
+			</li>
+			<li>
+				<form th:action="@{/logout}" method="post">
+					<button class="logout-button">ログアウト</button>
+				</form>
+			</li>
+		</ul>
+
+	</header>
+
+
+
+	<main class="white-bg green-text">
+		<button class="button js-modal-button">投稿</button>
+		<a th:href="@{/management}" sec:authorize-url="/management">管理画面へ</a>
+		<h2>書き込み一覧</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>UserID</th>
+					<th>Content</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="comment : ${comments}">
+					<td th:text="${comment.id}">ID</td>
+					<td th:text="${comment.userid}">UserId</td>
+					<td th:text="${comment.content}">Content</td>
+				</tr>
+			</tbody>
+		</table>
+
+		
+
+		<div class="layer js-modal">
+			<div class="modal">
+				<div class="modal__inner">
+					<div class="modal__button-wrap">
+						<button class="close-button js-close-button">
+							<span></span>
+							<span></span>
+						</button>
+					</div>
+					<div class="modal__contents">
+						<div class="modal__content">
+							<p th:text="'UserName:'+${loginUser.username}"></p>
+							<form th:action="@{/comment}" method="post">
+								<p>
+									<textarea id="postTextarea" placeholder="ここにコメント" name="content"
+										required></textarea>
+								</p>
+								<p>
+									<input type="submit" value="投稿">
+								</p>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="green-bg white-text">
+		<p id="copyright">©K.Yama4ta</p>
+	</footer>
+</div>
+
+
+
+<script th:src="@{/js/modal.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/*------ base ------*/
+
+body{
+	font-size: 20px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+}
+
+input{
+	margin: 0;
+	outline: none;
+	border: none;
+    font-size: 20px;
+}
+
+input[type="submit"]{
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.main{
+	width: 600px;
+	padding-top: 60px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.error-message{
+	color: red;
+	font-size: 16px;
+}
+
+/*------ form ------*/
+
+.form_title{
+	margin-bottom: 45px;
+	font-size: 30px;
+}
+
+.form_item{
+	margin-bottom: 45px;
+	text-align: left;
+}
+
+.form_item > label{
+	display: block;
+	margin-bottom: 15px;
+	font-weight: bold;
+}
+
+.form_item > input[type="text"], .form_item > input[type="password"]{
+	width: 100%;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	line-height: 40px;
+}
+
+.form_item > input[type="submit"]{
+	width: 100%;
+}
+
