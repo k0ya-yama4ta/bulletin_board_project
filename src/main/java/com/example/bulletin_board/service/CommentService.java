@@ -21,5 +21,9 @@ public class CommentService {
 	public void addComment(String _userid, String _content) {
 		commentRepository.saveAndFlush(new Comment(_userid, _content));
 	}
+	
+	public void deleteComment(int _id) {
+		commentRepository.deleteById(_id);
+	}
 
 }

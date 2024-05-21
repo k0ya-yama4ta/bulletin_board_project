@@ -51,6 +51,7 @@ public class SecurityConfig {
 		return http.build();
 	}
 	
+	// パスワードハッシュ化するためのやつ
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

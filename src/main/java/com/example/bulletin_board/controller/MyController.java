@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.bulletin_board.entity.Comment;
 import com.example.bulletin_board.entity.User;
 import com.example.bulletin_board.form.CommentForm;
+import com.example.bulletin_board.form.DeleteCommentForm;
 import com.example.bulletin_board.form.UserRegistrationForm;
 import com.example.bulletin_board.service.CommentService;
 import com.example.bulletin_board.service.UserRegistrationService;
@@ -118,9 +119,24 @@ public class MyController {
 		User loginUser = (User) httpSession.getAttribute("user");
 		commentService.addComment(loginUser.getUserid(), form.getContent());
 		return "redirect:/board";
-
+	}
+	/**
+	 * コメント削除処理
+	 * @param form
+	 * @return
+	 */
+	@PostMapping("/deleteComment")
+	public String postDeleteComment(@ModelAttribute("form") DeleteCommentForm form) {
+		commentService.deleteComment(form.getId());
+		System.out.println(form.getId());
+		return "redirect:/management";
 	}
 
+	/**
+	 * 管理者用ページ
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/management")
 	public String getManagement(Model model) {
 		User loginUser = (User) httpSession.getAttribute("user");
@@ -133,6 +149,10 @@ public class MyController {
 		return "management";
 	}
 
+	/**
+	 * ユーザが権限のないページにアクセスしたときようのページ
+	 * @return
+	 */
 	@GetMapping("/accessDenied")
 	public String getAccessDenied() {
 		return "accessDenied";
