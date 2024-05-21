@@ -5,46 +5,66 @@
 .green-text {
 	color: #728143;
 }
+
 .black-text {
 	color: #030507;
 }
+
 .white-text {
 	color: #fbfff7;
 }
+
 .green-bg {
 	background-color: #728143;
 }
+
 .black-bg {
 	background-color: #030507;
 }
+
 .white-bg {
 	background-color: #fbfff7;
 }
 
-body {
-    font-family: Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif;
-    min-width: 375px;
-    background-color: #fbfff7;
-    color: #728143;
+html {
+	min-height: 100%;
+	position: relative;
 }
-header{
+
+body {
+	font-family: Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif;
+	min-width: 375px;
+	margin: 0;
+	padding: 0;
+	background-color: #fbfff7;
+	color: #728143;
+}
+
+header {
+	width: 95%;
+	margin: 0 auto;
 	padding-bottom: 25px;
 }
+
 #logo {
-    margin-bottom: 25px;
-    padding-top: 21px;
-    padding-left: 20px;
-    text-align: left;
+	margin-bottom: 25px;
+	padding-top: 20px;
+	text-align: left;
 }
+
 h2 {
 	font-size: 24px;
 	padding-bottom: 12px;
 }
-header ul {
-	padding-left: 30px;
+
+ul {
 	display: flex;
 	align-items: center;
 }
+li:nth-child(even) {
+	padding-left: 50px;
+}
+
 .user-info {
 	font-size: 18px;
 	height: 30px;
@@ -53,7 +73,7 @@ header ul {
 }
 
 
-.logout-button{
+.logout-button {
 	background-color: #728143;
 	color: #fbfff7;
 	width: 104px;
@@ -61,39 +81,54 @@ header ul {
 	border-radius: 12px;
 	cursor: pointer;
 }
-footer{
+
+main {
+	width: 95%;
+	margin: 0 auto 25px;
+}
+
+section {
+	margin-bottom: 25px;
+}
+
+footer {
 	position: absolute;
 	bottom: 0;
+	left: 0;
 	width: 100%;
 	text-align: center;
 }
+
 #copyright {
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 12px;
+	text-align: center;
+	font-size: 12px;
 }
+
 
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  border-bottom: solid 1px#728143;
+	width: 100%;
+	margin: 0 auto;
+	border-collapse: collapse;
+	border-bottom: solid 1px#728143;
 }
 
 thead {
-  background-color: #728143;
-  color: #fbfff7;
+	background-color: #728143;
+	color: #fbfff7;
 }
 
-th, td {
+th,
+td {
 
-  text-align: left;
-  padding: 8px;
+	text-align: left;
+	padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #e2e8cf;
+	background-color: #e2e8cf;
 }
+
 #postTextarea {
 	width: 300px;
 	height: 100px;
