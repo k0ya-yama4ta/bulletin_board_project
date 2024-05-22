@@ -3,6 +3,8 @@ package com.example.bulletin_board.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.bulletin_board.entity.Comment;
@@ -16,6 +18,10 @@ public class CommentService {
 	
 	public List<Comment> getAllComment(){
 		return commentRepository.findAll();
+	}
+	
+	public Page<Comment> getPageComment(Pageable _pageable){
+		return commentRepository.findAll(_pageable);
 	}
 	
 	public void addComment(String _userid, String _content) {

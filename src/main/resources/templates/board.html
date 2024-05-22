@@ -32,10 +32,7 @@
 					</form>
 				</li>
 			</ul>
-
 		</header>
-
-
 
 		<main class="white-bg green-text">
 			<section>
@@ -47,36 +44,63 @@
 						<a th:href="@{/management}">管理画面へ</a>
 					</li>
 				</ul>
-				
-				
-				
 			</section>
-			
+
 
 			<section>
 				<h2>書き込み一覧</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>UserID</th>
-						<th>Content</th>
-						<th>PostDate</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="comment : ${comments}">
-						<td th:text="${comment.id}">ID</td>
-						<td th:text="${comment.userid}">UserId</td>
-						<td th:text="${comment.content}">Content</td>
-						<td th:text="${comment.createdAt}">PostDate</td>
-					</tr>
-				</tbody>
-			</table>
+				<table>
+					<thead>
+						<tr>
+							<th>PostDate</th>
+							<th>UserID</th>
+							<th>Content</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="comment : ${comments}">
+							<td th:text="${#dates.format(comment.createdAt, 'yyyy/MM/dd HH:mm')}">PostDate</td>
+							<td th:text="${comment.userid}">UserId</td>
+							<td th:text="${comment.content}">Content</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- ページネーション部分 -->
+				<div>
+				  <ul id="pagenation-list">
+				    <li style="display:inline;">
+				      <span th:if="${page.first}">&lt;&lt;前</span>
+				      <a
+				        th:if="${!page.first}"
+				        th:href="@{/board(page = ${page.number} - 1)}"
+				      >
+				        &lt;&lt;前
+				      </a>
+				    </li>
+				    <li
+				      th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+				      style="display:inline; margin-left:10px;"
+				    >
+				      <span th:if="${i} == ${page.number}" th:text="${i + 1}">1</span>
+				      <a
+				        th:if="${i} != ${page.number}"
+				        th:href="@{/board(page = ${i})}"
+				      >
+				        <span th:text="${i+1}">1</span>
+				      </a>
+				    </li>
+				    <li style="display:inline; margin-left:10px;">
+				      <span th:if="${page.last}">次&gt;&gt;</span>
+				      <a
+				        th:if="${!page.last}"
+				        th:href="@{/board(page = (${page.number} + 1))}"
+				      >
+				        次&gt;&gt;
+				      </a>
+				    </li>
+				  </ul>
+				</div>
 			</section>
-			
-
-
 
 			<div class="layer js-modal">
 				<div class="modal">

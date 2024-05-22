@@ -91,6 +91,15 @@ section {
 	margin-bottom: 25px;
 }
 
+#pagenation-list {
+	display: block;
+	text-align: center;
+	margin: 5px auto;
+}
+#pagenation-list li{
+	padding: 0 0.1em;
+}
+
 footer {
 	position: absolute;
 	bottom: 0;

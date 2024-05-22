@@ -3,6 +3,9 @@ package com.example.bulletin_board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -94,11 +97,15 @@ public class MyController {
 	 * @return
 	 */
 	@GetMapping("/board")
-	public String getBoard(Model model) {
+	public String getBoard(
+			@PageableDefault(page=0, size=10) Pageable pageable,
+			Model model) {
 		User loginUser = (User) httpSession.getAttribute("user");
 		model.addAttribute("loginUser", loginUser);
-
-		List<Comment> comments = commentService.getAllComment();
+		
+		Page<Comment> commentPage = commentService.getPageComment(pageable);
+		List<Comment> comments = commentPage.getContent();
+		model.addAttribute("page", commentPage);
 		model.addAttribute("comments", comments);
 		return "board";
 	}
@@ -138,14 +145,20 @@ public class MyController {
 	 * @return
 	 */
 	@GetMapping("/management")
-	public String getManagement(Model model) {
+	public String getManagement(
+			@PageableDefault(page=0, size=10) Pageable pageable,
+			Model model) {
 		User loginUser = (User) httpSession.getAttribute("user");
 		model.addAttribute("loginUser", loginUser);
 
 		List<User> users = userService.getAllUser();
-		List<Comment> comments = commentService.getAllComment();
 		model.addAttribute("users", users);
+		
+		Page<Comment> commentPage = commentService.getPageComment(pageable);
+		List<Comment> comments = commentPage.getContent();
+		model.addAttribute("page", commentPage);
 		model.addAttribute("comments", comments);
+
 		return "management";
 	}
 
@@ -154,7 +167,9 @@ public class MyController {
 	 * @return
 	 */
 	@GetMapping("/accessDenied")
-	public String getAccessDenied() {
+	public String getAccessDenied(Model model) {
+		User loginUser = (User) httpSession.getAttribute("user");
+		model.addAttribute("loginUser", loginUser);
 		return "accessDenied";
 	}
 
