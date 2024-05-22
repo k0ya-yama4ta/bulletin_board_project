@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>管理者ページ</title>
+
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+
+<body>
+
+	<header>
+		<h1 id="logo">
+			<a>
+				<img th:src="@{/images/logo-management.png}" height="70">
+			</a>
+		</h1>
+		<ul>
+			<li>
+				<h2>現在のログインユーザ</h2>
+				<div id="login-userid" class="user-info" th:text="'UserID  ：'+${loginUser.userid}"></div>
+				<div id="login-username" class="user-info" th:text="'UserName：'+${loginUser.username}"></div>
+			</li>
+			<li>
+				<form th:action="@{/logout}" method="post">
+					<button class="logout-button">ログアウト</button>
+				</form>
+			</li>
+		</ul>
+
+	</header>
+
+	<main>
+		<section>
+			<a class="page-transition" th:href="@{/board}">通常の掲示板へ</a>
+			<a class="page-transition" th:href="@{/management/comment}">投稿管理</a>
+		</section>
+
+		<section>
+			<h2>ユーザ一覧</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>作成日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.userid}">ID</td>
+						<td th:text="${user.username}">Name</td>
+						<td th:text="${#dates.format(user.createdAt, 'yyyy/MM/dd HH:mm')}">CreatedAt</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- ページネーション部分 -->
+			<div>
+				<ul id="pagenation-list">
+					<li style="display:inline;">
+						<span th:if="${page.first}">&lt;&lt;前</span>
+						<a th:if="${!page.first}" th:href="@{/management/user(page = ${page.number} - 1)}">
+							&lt;&lt;前
+						</a>
+					</li>
+					<li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+						style="display:inline; margin-left:10px;">
+						<span th:if="${i} == ${page.number}" th:text="${i + 1}">1</span>
+						<a th:if="${i} != ${page.number}" th:href="@{/management/user(page = ${i})}">
+							<span th:text="${i+1}">1</span>
+						</a>
+					</li>
+					<li style="display:inline; margin-left:10px;">
+						<span th:if="${page.last}">次&gt;&gt;</span>
+						<a th:if="${!page.last}" th:href="@{/management/user(page = (${page.number} + 1))}">
+							次&gt;&gt;
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+
+
+	</main>
+
+
+	<footer class="green-bg white-text">
+		<p id="copyright">©K.Yama4ta</p>
+	</footer>
+
+
+</body>
+
+</html>

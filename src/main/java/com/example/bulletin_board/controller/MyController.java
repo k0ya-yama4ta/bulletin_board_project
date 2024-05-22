@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.bulletin_board.entity.Comment;
 import com.example.bulletin_board.entity.User;
@@ -144,22 +145,35 @@ public class MyController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/management")
-	public String getManagement(
+	@GetMapping("/management/user")
+	public String getManagementUser(
 			@PageableDefault(page=0, size=10) Pageable pageable,
 			Model model) {
 		User loginUser = (User) httpSession.getAttribute("user");
 		model.addAttribute("loginUser", loginUser);
-
-		List<User> users = userService.getAllUser();
-		model.addAttribute("users", users);
 		
-		Page<Comment> commentPage = commentService.getPageComment(pageable);
+		Page<User> userPage = userService.getPageUser(pageable);
+		List<User> users = userPage.getContent();
+		model.addAttribute("page", userPage);
+		model.addAttribute("users", users);
+
+		return "management-user";
+	}
+	@GetMapping("/management/comment")
+	public String getManagementComment(
+			@RequestParam(name="userid", required=false, defaultValue="") String userid,
+			@PageableDefault(page=0, size=10) Pageable pageable,
+			Model model) {
+		User loginUser = (User) httpSession.getAttribute("user");
+		model.addAttribute("loginUser", loginUser);
+		
+		Page<Comment> commentPage = userid.equals("") ? commentService.getPageComment(pageable) : commentService.getUseridPageComment(userid, pageable);
 		List<Comment> comments = commentPage.getContent();
+		model.addAttribute("userid", userid);
 		model.addAttribute("page", commentPage);
 		model.addAttribute("comments", comments);
 
-		return "management";
+		return "management-comment";
 	}
 
 	/**

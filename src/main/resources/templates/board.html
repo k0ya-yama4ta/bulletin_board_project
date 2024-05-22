@@ -41,14 +41,14 @@
 						<button class="modal-button js-modal-button">投稿</button>
 					</li>
 					<li 					th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-						<a class="page-transition" th:href="@{/management}">管理画面へ</a>
+						<a class="page-transition" th:href="@{/management/user}">管理画面へ</a>
 					</li>
 				</ul>
 			</section>
 
 
 			<section>
-				<h2>書き込み一覧</h2>
+				<h2>コメント一覧</h2>
 				<table>
 					<thead>
 						<tr>

@@ -24,6 +24,10 @@ public class CommentService {
 		return commentRepository.findAll(_pageable);
 	}
 	
+	public Page<Comment> getUseridPageComment(String _userid, Pageable _pageable){
+		return commentRepository.findByUseridContaining(_userid,_pageable);
+	}
+	
 	public void addComment(String _userid, String _content) {
 		commentRepository.saveAndFlush(new Comment(_userid, _content));
 	}

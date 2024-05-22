@@ -35,30 +35,18 @@
 	<main>
 		<section>
 			<a class="page-transition" th:href="@{/board}">通常の掲示板へ</a>
-		</section>
-
-		<section>
-			<h2>ユーザ一覧</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>作成日</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="user : ${users}">
-						<td th:text="${user.userid}">ID</td>
-						<td th:text="${user.username}">Name</td>
-						<td th:text="${#dates.format(user.createdAt, 'yyyy/MM/dd HH:mm')}">CreatedAt</td>
-					</tr>
-				</tbody>
-			</table>
+			<a class="page-transition" th:href="@{/management/user}">ユーザ管理</a>
 		</section>
 
 		<section>
 			<h2>コメント一覧</h2>
+			<form class="search-form" method="get" th:action="@{/management/comment}">
+				<label>ユーザID検索(文字列を含むもの)</label><br>
+				<input class="search-box" type="text" name="userid" placeholder="ここに入力"
+					th:value="${userid}"/>
+				<button class="search-button" type="submit">絞り込み</button>
+				<a class="page-transition" th:href="@{/management/comment}">全件表示</a>
+			</form>
 			<table>
 				<thead>
 					<tr>
@@ -85,20 +73,20 @@
 				<ul id="pagenation-list">
 					<li style="display:inline;">
 						<span th:if="${page.first}">&lt;&lt;前</span>
-						<a th:if="${!page.first}" th:href="@{/management(page = ${page.number} - 1)}">
+						<a th:if="${!page.first}" th:href="@{/management/comment(page=${page.number}-1,userid=${userid})}">
 							&lt;&lt;前
 						</a>
 					</li>
 					<li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
 						style="display:inline; margin-left:10px;">
 						<span th:if="${i} == ${page.number}" th:text="${i + 1}">1</span>
-						<a th:if="${i} != ${page.number}" th:href="@{/management(page = ${i})}">
+						<a th:if="${i} != ${page.number}" th:href="@{/management/comment(page=${i},userid=${userid})}">
 							<span th:text="${i+1}">1</span>
 						</a>
 					</li>
 					<li style="display:inline; margin-left:10px;">
 						<span th:if="${page.last}">次&gt;&gt;</span>
-						<a th:if="${!page.last}" th:href="@{/management(page = (${page.number} + 1))}">
+						<a th:if="${!page.last}" th:href="@{/management/comment(page=${page.number}+1,userid=${userid})}">
 							次&gt;&gt;
 						</a>
 					</li>
