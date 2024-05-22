@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
 	<meta charset="UTF-8">
@@ -38,10 +38,10 @@
 			<section>
 				<ul>
 					<li>
-						<button class="button js-modal-button">投稿</button>
+						<button class="modal-button js-modal-button">投稿</button>
 					</li>
-					<li sec:authetication="principal.authorities">
-						<a th:href="@{/management}">管理画面へ</a>
+					<li 					th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+						<a class="page-transition" th:href="@{/management}">管理画面へ</a>
 					</li>
 				</ul>
 			</section>

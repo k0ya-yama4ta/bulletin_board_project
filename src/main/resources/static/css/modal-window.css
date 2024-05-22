@@ -1,10 +1,9 @@
 @charset "UTF-8";
-.button {
+.modal-button {
   background: #728143;
   border-radius: 12px;
   border: 1px solid #728143;
   font-size: 16px;
-  line-height: 1.6;
   display: block;
   padding: 12px 20px;
   color: #fbfff7;

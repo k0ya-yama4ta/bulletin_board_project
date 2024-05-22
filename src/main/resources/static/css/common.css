@@ -61,6 +61,7 @@ ul {
 	display: flex;
 	align-items: center;
 }
+
 li:nth-child(even) {
 	padding-left: 50px;
 }
@@ -91,12 +92,23 @@ section {
 	margin-bottom: 25px;
 }
 
+.page-transition {
+	font-size: 16px;
+	padding: 12px 20px;
+	background-color: #728143;
+	color: #fbfff7;
+	border-radius: 12px;
+	border: 1px solid #728143;
+	text-decoration: none;
+}
+
 #pagenation-list {
 	display: block;
 	text-align: center;
 	margin: 5px auto;
 }
-#pagenation-list li{
+
+#pagenation-list li {
 	padding: 0 0.1em;
 }
 

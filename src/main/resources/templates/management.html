@@ -34,7 +34,7 @@
 
 	<main>
 		<section>
-			<a th:href="@{/board}">通常の掲示板へ</a>
+			<a class="page-transition" th:href="@{/board}">通常の掲示板へ</a>
 		</section>
 
 		<section>
@@ -51,7 +51,7 @@
 					<tr th:each="user : ${users}">
 						<td th:text="${user.userid}">ID</td>
 						<td th:text="${user.username}">Name</td>
-						<td th:text="${user.createdAt}">CreatedAt</td>
+						<td th:text="${#dates.format(user.createdAt, 'yyyy/MM/dd HH:mm')}">CreatedAt</td>
 					</tr>
 				</tbody>
 			</table>
@@ -62,7 +62,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>PostDate</th>
 						<th>UserId</th>
 						<th>Content</th>
 						<th>Delete</th>
@@ -72,7 +72,7 @@
 					<tr th:each="comment : ${comments}">
 						<form th:action="@{/deleteComment}" method="post">
 							<input type="hidden" th:value="${comment.id}" name="id" />
-							<td th:text="${comment.id}">ID</td>
+							<td th:text="${#dates.format(comment.createdAt, 'yyyy/MM/dd HH:mm')}">PostDate</td>
 							<td th:text="${comment.userid}">UserId</td>
 							<td th:text="${comment.content}">Content</td>
 							<td><input type="submit" value="削除" /></td>
