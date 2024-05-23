@@ -34,7 +34,7 @@ public class SecurityConfig {
 				.requestMatchers("/user/registration").permitAll()
 		)
 		.authorizeHttpRequests(authz -> authz
-				.requestMatchers("/management").hasAuthority("ROLE_ADMIN")
+				.requestMatchers("/management/**").hasAuthority("ROLE_ADMIN")
 				.anyRequest().authenticated()
 		)
 		

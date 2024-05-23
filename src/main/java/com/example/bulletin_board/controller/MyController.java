@@ -137,7 +137,7 @@ public class MyController {
 	public String postDeleteComment(@ModelAttribute("form") DeleteCommentForm form) {
 		commentService.deleteComment(form.getId());
 		System.out.println(form.getId());
-		return "redirect:/management";
+		return "redirect:/management/comment";
 	}
 
 	/**

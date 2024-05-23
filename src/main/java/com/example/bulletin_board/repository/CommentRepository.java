@@ -9,5 +9,5 @@ import com.example.bulletin_board.entity.Comment;
 public interface CommentRepository extends JpaRepository<Comment, Integer>{
 	Page<Comment> findByUseridContaining(String userid, Pageable pageable);
 	
-	Page<Comment> findAllByOrderByIdDesc(Pageable pageable);
+	Page<Comment> findAllByOrderByCreatedAtDesc(Pageable pageable);
 }
